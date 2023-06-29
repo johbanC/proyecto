@@ -1,29 +1,8 @@
 <?php
 
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
-/**
- * Para que son las diferentes ruras
- * 
- * Route::get      | Consultar
- * Route::post     | guardar
- * Route::delete   | eliminar
- * Route::put      | actualizar
- * 
- * 
- */
-
-/*
- EJEMPLO 1
-Route::get('/', [PageController::class, 'home'])->name('home');
-
-Route::get('blog', [PageController::class, 'blog'])->name('blog');
-
-Route::get('blog/{slug}', [PageController::class, 'post'])->name('post');
- */
-
-/* EJEMPLO 2 UTILIZANDO GRUPOS PARA UN MISMO CONTROLADOR */
+use App\Http\Controllers\PageController;
 
 Route::controller(PageController::class)->group(function () {
 
@@ -31,3 +10,16 @@ Route::controller(PageController::class)->group(function () {
   Route::get('blog', 'blog')->name('blog');
   Route::get('blog/{post:slug}', 'post')->name('post');
 });
+
+Route::get('/dashboard', function () {
+  return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+/*
+Route::middleware('auth')->group(function () {
+  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+*/
+require __DIR__ . '/auth.php';
