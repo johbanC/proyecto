@@ -13,6 +13,9 @@
 
     </a>
 
+    <br>
+
+    <span>{{ $post->user->name }}</span>
 </p>
 
 
