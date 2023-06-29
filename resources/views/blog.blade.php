@@ -1,25 +1,24 @@
 @extends('template')
 
-    @section('content')
-    
-    <h1>Listado</h1>
+@section('content')
 
-    @foreach ($posts as $post)
+<h1>Listado</h1>
 
-    <p>
-        <strong>{{ $post['id'] }}</strong>
-        <a href="{{ route('post', $post['slug']) }}">
-            {{ $post['title']}}
+@foreach ($posts as $post)
 
-        </a>
+<p>
+    <strong>{{ $post->id }}</strong>
+    <a href="{{ route('post', $post->slug) }}">
+        {{ $post->title}}
 
-    </p>
+    </a>
 
-    
-
-    @endforeach
-
-    @endsection
+</p>
 
 
-    
+
+@endforeach
+
+{{ $posts->links() }}
+
+@endsection
