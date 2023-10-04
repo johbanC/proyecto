@@ -20,6 +20,7 @@
 
         @auth
         <a href="{{ route('dashboard')}}">Dashboard</a>
+        <a href="{{ route('posts')}}">posts</a>
         @else
         <a href="{{ route('login')}}">Login</a>
         @endauth
