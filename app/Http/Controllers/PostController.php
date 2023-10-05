@@ -32,15 +32,13 @@ class PostController extends Controller
         // Valida que los campos title y body estén presentes en la solicitud
         $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:posts,slug',
             'body' => 'required',
         ]);
 
-        $title = $request->title;
-        $slug = Str::slug($title);
-
         $post = $request->user()->posts()->create([
-            'title' => $title,
-            'slug' => $slug,
+            'title' => $request->title,
+            'slug' => $request->slug,
             'body' => $request->body,
         ]);
 
@@ -61,16 +59,14 @@ class PostController extends Controller
         // Valida que los campos title y body estén presentes en la solicitud
         $request->validate([
             'title' => 'required',
+            'slug' => 'required|unique:posts,slug,' . $post->id,
             'body' => 'required',
         ]);
 
-        $title = $request->title;
-        $slug = Str::slug($title);
-
         $post->update([
-            'title' => $title,
-            'slug' => $slug,
-            'body' => $request->body,
+            'title' => $request->title,
+            'slug'  => $request->slug,
+            'body'  => $request->body,
         ]);
 
         return redirect()->route('posts.edit', $post);
