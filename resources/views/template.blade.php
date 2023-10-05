@@ -33,9 +33,27 @@
 
         </header>
 
+        <div class="opacity-60 h-px mb-8" style="
+            background: linear-gradient(to right,
+                rgba(200, 200, 200, 0) 0%,
+                rgba(200, 200, 200, 1) 30%,
+                rgba(200, 200, 200, 1) 70%,
+                rgba(200, 200, 200, 0) 100%
+                            
+            );
+        ">
+
+        </div>
+
         @yield('content')
 
+        <p class="py-16">
+            <img src="{{asset('imagenes/logo.png')}}" class="h-12 mx-auto">
+        </p>
+
     </div>
+
+
 
 
 
