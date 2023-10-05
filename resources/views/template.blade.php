@@ -14,20 +14,31 @@
 
 <body>
 
-    <p>
-        <a href="{{ route('home') }}">Home</a>
-        <a href="{{ route('blog') }}">Blog</a>
+    <div class="container px-4 mx-auto">
+        <header class="flex justify-between intems-center py-4">
+            <div class="flex items-center flex grow gap-4">
+                <a href="{{ route('home') }}"></a>
+                <img src="{{asset('imagenes/logo.png')}}" class="h-12 ">
+                <form action="">
+                    <input type="text" placeholder="buscar">
+                </form>
+            </div>
 
-        @auth
-        <a href="{{ route('dashboard')}}">Dashboard</a>
-        <a href="{{ route('posts')}}">posts</a>
-        @else
-        <a href="{{ route('login')}}">Login</a>
-        @endauth
-    </p>
-    <hr>
+            @auth
+            <a href="{{ route('dashboard')}}">Dashboard</a>
+            <a href="{{ route('posts')}}">posts</a>
+            @else
+            <a href="{{ route('login')}}">Login</a>
+            @endauth
 
-    @yield('content')
+        </header>
+
+        @yield('content')
+
+    </div>
+
+
+
 </body>
 
 </html>
