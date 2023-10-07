@@ -17,18 +17,22 @@
     <div class="container px-4 mx-auto">
         <header class="flex justify-between intems-center py-4">
             <div class="flex items-center flex grow gap-4">
-                <a href="{{ route('home') }}"></a>
-                <img src="{{asset('imagenes/logo.png')}}" class="h-12 ">
-                <form action="">
-                    <input type="text" placeholder="buscar">
+                <a href="{{ route('home') }}">
+                    <img src="{{asset('imagenes/logo.png')}}" class="h-12 ">
+                </a>
+
+                <form action="{{ route('home') }}" method="GET" class="flex-grow">
+                    <input type="text" name="search" placeholder="buscar" value="{{ request('search') }}"
+                        class="borde borde-gray-200 rounded py-2 px-4 w-1/2">
                 </form>
+
             </div>
 
             @auth
-            <a href="{{ route('dashboard')}}">Dashboard</a>
-            <a href="{{ route('posts')}}">posts</a>
+            <a href="{{ route('dashboard') }}">Dashboard</a>
+            <a href="{{ route('posts') }}">posts</a>
             @else
-            <a href="{{ route('login')}}">Login</a>
+            <a href="{{ route('login') }}">Login</a>
             @endauth
 
         </header>
